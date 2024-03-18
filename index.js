@@ -36,10 +36,10 @@ inquirer
     ])
 
     // writes logo svg file and puts it into the examples folder. logs error if error, if no error logs message
-    fs.writeFile('svg.example', examples, (error) => {
-        if (error) {
-            console.log(error)
-        } else {
-            console.log('LOGO created!!')
-        }
-    });
+    // fs.writeFile('svg.example', examples, (error) => {
+    //     if (error) {
+    //         console.log(error)
+    //     } else {
+    //         console.log('LOGO created!!')
+    //     }
+    // });
