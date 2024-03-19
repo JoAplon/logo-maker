@@ -9,12 +9,29 @@ inquirer
              type: 'input',
              name: 'text',
              message: 'Enter the text you want on your logo (3 char total):',
+             validate: function(text) {
+             if(text.length > 3){
+                console.error('`text` can only be three characters!');
+                return false;
+                // if false then the validation failed
+             }
+                return true;
+            }
         },
         {
             // Color for text can be color name of hex value
             type: 'input',
             name: 'textColor',
             message: 'Pick a color for the text (keyword or hex):',
+            validation: function(textColor) {
+                const colorName = 'red|orange|yellow|green|blue|purple|white|black';
+                const hexValue = '^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$';
+                if(textColor === colorName || hexValue) {
+                    return true;
+                } else {
+                    console.error('Shucks! Must be a valid color name or hex value!')
+                }
+            }
         },
         {
             // Pick a shape
@@ -32,6 +49,15 @@ inquirer
             type: 'input',
             name: 'shapeColor',
             message: 'Pick a color for your shape:',
+            validation: function(shapeColor) {
+                const colorName = 'red|orange|yellow|green|blue|purple|white|black';
+                const hexValue = '^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$';
+                if(shapeColor === colorName || hexValue) {
+                    return true;
+                } else {
+                    console.error('Oh No! Must be a valid color name or hex value!')
+                }
+            }
         },
     ])
 
