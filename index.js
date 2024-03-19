@@ -23,19 +23,20 @@ inquirer
             type: 'input',
             name: 'textColor',
             message: 'Pick a color for the text (keyword or hex):',
-            validation: function(textColor) {
-                const colorName = 'red|orange|yellow|green|blue|purple|white|black';
-                const hexValue = '^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$';
-                if(textColor === colorName || hexValue) {
+            validate: function(textColor) {
+                const colorNameRegex = /^(red|orange|yellow|green|blue|purple|white|black)$/i;
+                const hexValueRegex = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/;
+                if(colorNameRegex.test(textColor) || hexValueRegex.test(textColor)) {
                     return true;
                 } else {
                     console.error('Shucks! Must be a valid color name or hex value!')
+                    return false;
                 }
             }
         },
         {
             // Pick a shape
-            type: 'checkbox',
+            type: 'list',
             name: 'shape',
             message: 'Pick a shape for the logo:',
             choices: [
@@ -49,13 +50,14 @@ inquirer
             type: 'input',
             name: 'shapeColor',
             message: 'Pick a color for your shape:',
-            validation: function(shapeColor) {
-                const colorName = 'red|orange|yellow|green|blue|purple|white|black';
-                const hexValue = '^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$';
-                if(shapeColor === colorName || hexValue) {
+            validate: function(shapeColor) {
+                const colorNameRegex = /^(red|orange|yellow|green|blue|purple|white|black)$/i;
+                const hexValueRegex = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/;
+                if(colorNameRegex.test(shapeColor) || hexValueRegex.test(shapeColor)) {
                     return true;
                 } else {
-                    console.error('Oh No! Must be a valid color name or hex value!')
+                    console.error('Shucks! Must be a valid color name or hex value!')
+                    return false;
                 }
             }
         },
