@@ -1,5 +1,5 @@
 const inquirer = require('inquirer');
-const Shapes = require('./lib/shapes.js');
+const { Shapes, Circle, Polygon, Rect} = require('./lib/classes')
 const fs = require('fs');
 
 inquirer
@@ -37,12 +37,12 @@ inquirer
         {
             // Pick a shape
             type: 'list',
-            name: 'shape',
+            name: 'shapes',
             message: 'Pick a shape for the logo:',
             choices: [
-                { name: 'circle', value: 'circle' },
-                { name: 'triangle', value: 'triangle' },
-                { name: 'square', value: 'square' },
+                { name: 'circle', value: 'cx="150" cy="100" r="80"' },
+                { name: 'triangle', value: 'polygon' },
+                { name: 'square', value: 'rect' },
             ]
         },
         {
@@ -65,32 +65,16 @@ inquirer
 
     // writes logo svg file and puts it into the examples folder. logs error if error, if no error logs message
     .then((response) => {
-
+        const {text, textColor, shapes, shapeColor} = response;
         const folderPath = './examples';
         const fileName = 'logo.svg';
         const filePath = `${folderPath}/${fileName}`;
-        const circleSvg = `
-            <svg version="1.1" width="300" height="200" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="150" cy="100" r="80" fill="red" />
-                <text x="150" y="125" font-size="60" text-anchor="middle" fill="white">SVG</text>
-            </svg>
-            `;
 
-        const polygonSvg = `
-            <svg version="1.1" width="300" height="200" xmlns="http://www.w3.org/2000/svg">
-                <polygon points="100,50 160,180 40,180" fill="yellow" />
-                <text x="150" y="125" font-size="60" text-anchor="middle" fill="white">SVG</text>
-            </svg>
-            `;
-
-        const rectSvg = `
-            <svg version="1.1" width="300" height="200" xmlns="http://www.w3.org/2000/svg">
-                <rect width="100" height="100" x="10" y="10" rx="20" ry="20" fill="green" />
-                <text x="150" y="125" font-size="60" text-anchor="middle" fill="white">SVG</text>
-            </svg>
-            `;
-
-        const svgContent = circleSvg + polygonSvg + rectSvg;
+        const svgContent = `
+        <svg version="1.1" width="300" height="200" xmlns="http://www.w3.org/2000/svg">
+            <${shapes} fill="${shapeColor}"></${shapes}><text x="145" y="115" font-size="40" text-anchor="middle" fill="${textColor}">${text}</text>
+        </svg>
+    `;
 
         fs.writeFile(filePath, svgContent, (error) => {
             if (error) {
