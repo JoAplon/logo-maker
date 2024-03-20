@@ -6,6 +6,8 @@
 
 This program takes user input and generates a simple logo. The prompt will ask for three characters that will be at the center of your logo as well as the shape you want. You can pick the color of both the text and shape as long as they are valid color names or HEX values. The characters are case sensitive and will appear how you type them. The HEX values can either be capital or lowercase. Once you complete the prompt you will receive a message in the command line that tells you if the process was successful or if there was an error. Then the logo will be made into an svg file that you can open in the browser.
 
+Walkthrough Video: [Click Me to Watch!](https://drive.google.com/file/d/1xe6KtanV4wl_i0ChJVnMX3H8KTBQlG8Y/view)
+
 ## Table of Contents
 
 - [Description](#description)
