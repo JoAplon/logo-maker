@@ -45,7 +45,7 @@ N/A
 
 ## Tests
 
-To test this project I used jest and I made multiple describe blocks in their own file. One for each of the shapes and one to make sure the shapes were rendering correctly. I was testing the expected output when each shape was selected.
+To test this project I used jest and I made multiple describe blocks in their own file. One for each of the shapes and one to make sure the shapes were rendering correctly. I was testing the expected output when each shape was selected. A class was made for each shape along with output to be rendered. The tests were given the expected value and run to make sure they matched the value in the shape classes. A parent class was made for the shapes which was extended onto the children. The shape test made sure the shapes were rendered correctly if at all.
 
 ## Questions
 
