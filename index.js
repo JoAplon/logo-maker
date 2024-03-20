@@ -1,6 +1,7 @@
 const inquirer = require('inquirer');
-const { Shapes, Circle, Polygon, Rect} = require('./lib/classes')
+const { Shapes, Circle, Polygon, Rect } = require('./lib/classes')
 const fs = require('fs');
+
 
 inquirer
     .prompt([
@@ -40,7 +41,7 @@ inquirer
             name: 'shapes',
             message: 'Pick a shape for the logo:',
             choices: [
-                { name: 'circle', value: 'cx="150" cy="100" r="80"' },
+                { name: 'circle', value: 'circle' },
                 { name: 'triangle', value: 'polygon' },
                 { name: 'square', value: 'rect' },
             ]
@@ -65,14 +66,24 @@ inquirer
 
     // writes logo svg file and puts it into the examples folder. logs error if error, if no error logs message
     .then((response) => {
-        const {text, textColor, shapes, shapeColor} = response;
+        const { text, textColor, shapes, shapeColor } = response;
         const folderPath = './examples';
         const fileName = 'logo.svg';
         const filePath = `${folderPath}/${fileName}`;
 
+
+        let shapeValues = '';
+        if (shapes === 'circle') {
+            shapeValues = 'cx="150" cy="100" r="80"';
+        } else if (shapes === 'polygon') {
+            shapeValues = 'points="150,20 240,150 60,150"';
+        } else {
+            shapeValues = 'width="115" height="120" x="90" y="40" rx="20" ry="20"';
+        }
+
         const svgContent = `
         <svg version="1.1" width="300" height="200" xmlns="http://www.w3.org/2000/svg">
-            <${shapes} fill="${shapeColor}"></${shapes}><text x="145" y="115" font-size="40" text-anchor="middle" fill="${textColor}">${text}</text>
+            <${shapes} ${shapeValues} fill="${shapeColor}"></${shapes}><text x="145" y="115" font-size="40" text-anchor="middle" fill="${textColor}">${text}</text>
         </svg>
     `;
 
@@ -80,7 +91,7 @@ inquirer
             if (error) {
                 console.log(error)
             } else {
-                console.log('LOGO created!!')
+                console.log('Generated logo.svg!!')
             }
         });
     })

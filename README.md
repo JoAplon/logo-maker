@@ -4,7 +4,7 @@
 
 ## Description
 
-This program uses your input to generate a simple logo. It asks for a shape and color which will be put behind your choice of three characters. Then the logo will be made into an svg file that you can open in the browser.
+This program uses your input to generate a simple logo. I. Then the logo will be made into an svg file that you can open in the browser.
 
 ## Table of Contents
 
